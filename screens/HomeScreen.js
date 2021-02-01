@@ -5,7 +5,7 @@ export default function HomeScreen({ navigation }) {
 
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Hello</Text>
+      <Text>Soo Dhawoow </Text>
      
     </View>
   );
