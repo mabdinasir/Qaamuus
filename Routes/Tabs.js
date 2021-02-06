@@ -3,8 +3,10 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FontAwesome5 } from "@expo/vector-icons";
 
-import HomeScreen from "../screens/HomeScreen";
-import Onboarding from "../screens/Onboarding";
+import HomeScreen from "../screens/English";
+import Arabic from "../screens/Arabic";
+import Somali from "../screens/Somali";
+import Profile from "../screens/Profile";
 
 export default function Tabs() {
   const Tab = createBottomTabNavigator();
@@ -16,10 +18,14 @@ export default function Tabs() {
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
 
-            if (route.name === "HomeScreen") {
+            if (route.name === "English") {
               iconName = focused ? "home" : "home";
-            } else if (route.name === "Onboarding") {
+            } else if (route.name === "Arabic") {
               iconName = focused ? "heartbeat" : "heartbeat";
+            } else if (route.name === "Somali") {
+              iconName = focused ? "pills" : "pills";
+            } else if (route.name === "Profile") {
+              iconName = focused ? "skull" : "skull";
             }
 
             // You can return any component that you like here!
@@ -28,15 +34,17 @@ export default function Tabs() {
         })}
         tabBarOptions={{
           activeTintColor: "brown",
-          inactiveTintColor: "brown",
+          inactiveTintColor: "grey",
           style: {
             backgroundColor: "ghostwhite", //color you want to change
             // borderTopColor: 'grey',
           },
         }}
       >
-        <Tab.Screen name="HomeScreen" component={HomeScreen} />
-        <Tab.Screen name="Onboarding" component={Onboarding} />
+        <Tab.Screen name="English" component={HomeScreen} />
+        <Tab.Screen name="Arabic" component={Arabic} />
+        <Tab.Screen name="Somali" component={Somali} />
+        <Tab.Screen name="Profile" component={Profile} />
       </Tab.Navigator>
     </NavigationContainer>
   );

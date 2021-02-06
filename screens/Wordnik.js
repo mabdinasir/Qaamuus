@@ -3,7 +3,7 @@ import { Text, StyleSheet } from "react-native";
 import * as Font from "expo-font";
 
 const wordnik =
-  "https://api.wordnik.com/v4/words.json/randomWord?&minLength=5&maxLength=-1&api_key=";
+  "https://api.wordnik.com/v4/words.json/randomWord?&minLength=1&maxLength=-1&api_key=";
 const API_KEY = "bcvez8pvcc44t5p31l336fkxs9f0ifpmv9i3eh13a5sngp7a1";
 
 export default class Wordnik extends Component {
@@ -36,6 +36,7 @@ export default class Wordnik extends Component {
   render() {
     if (this.state.fontsLoaded) {
       return <Text style={styles.text}>{this.state.word}</Text>;
+      //this.state.loading ? `loading...` :
     } else {
       return null;
     }
@@ -46,7 +47,7 @@ const styles = StyleSheet.create({
   text: {
     fontFamily: "Montserrat",
     fontSize: 20,
-    marginBottom: 10,
+    margin: 5,
     textTransform: "capitalize",
     color: "brown",
   },
