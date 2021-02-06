@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Ionicons, View, Text } from "@expo/vector-icons";
+import { FontAwesome5 } from "@expo/vector-icons";
 
 import HomeScreen from "../screens/HomeScreen";
 import Onboarding from "../screens/Onboarding";
@@ -17,20 +17,21 @@ export default function Tabs() {
             let iconName;
 
             if (route.name === "HomeScreen") {
-              iconName = focused ? "home-sharp" : "home-outline";
+              iconName = focused ? "home" : "home";
             } else if (route.name === "Onboarding") {
-              iconName = focused ? "ios-list" : "ios-list";
+              iconName = focused ? "heartbeat" : "heartbeat";
             }
 
             // You can return any component that you like here!
-            return <Ionicons name={iconName} size={size} color={color} />;
+            return <FontAwesome5 name={iconName} size={size} color={color} />;
           },
         })}
         tabBarOptions={{
-          activeTintColor: "#be0000",
-          inactiveTintColor: "black",
+          activeTintColor: "brown",
+          inactiveTintColor: "brown",
           style: {
-            backgroundColor: "#f9faff", //color you want to change
+            backgroundColor: "ghostwhite", //color you want to change
+            // borderTopColor: 'grey',
           },
         }}
       >
