@@ -7,6 +7,8 @@ require("dotenv/config");
 const app = express();
 const PORT = process.env.PORT || 8080;
 
+const routes = require("./Routes/api");
+
 mongoose.connect(process.env.mongodbURI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -15,21 +17,12 @@ mongoose.connection.on("connected", () => {
   console.log("Connected to DB");
 });
 
-// Routes;
-app.get("/api", (req, res) => {
-  const data = {
-    username: "Abdelnacer",
-    age: 26,
-  };
-  res.json(data);
-});
+//Saving data to our mongoose schema
+const data = {
+  word: "laba-xiniinyood",
+};
 
-app.get("/api/name", (req, res) => {
-  const data = {
-    username: "Nay",
-    age: 25,
-  };
-  res.json(data);
-});
+
+app.use("/api", routes);
 
 app.listen(PORT, console.log(`Server started at port ${PORT}`));
