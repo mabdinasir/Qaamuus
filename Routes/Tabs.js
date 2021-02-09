@@ -33,10 +33,13 @@ export default function Tabs() {
           },
         })}
         tabBarOptions={{
+        
+          keyboardHidesTabBar: true,
           activeTintColor: "brown",
           inactiveTintColor: "grey",
           style: {
             backgroundColor: "ghostwhite", //color you want to change
+            position: "absolute",
             // borderTopColor: 'grey',
           },
         }}
