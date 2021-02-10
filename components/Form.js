@@ -1,8 +1,12 @@
 import React, { useState } from "react";
-import { Button, TextInput, View, StyleSheet } from "react-native";
+import {
+  Button,
+  TextInput,
+  View,
+  StyleSheet,
+} from "react-native";
 
 import { Formik } from "formik";
-
 export default function Form({ addWords }) {
   return (
     <>

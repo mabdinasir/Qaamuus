@@ -1,21 +1,36 @@
-import React, { useState } from "react";
-import { View, Button, StyleSheet, Text, FlatList } from "react-native";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import {
+  View,
+  Button,
+  StyleSheet,
+  Text,
+  FlatList,
+  TouchableWithoutFeedback,
+  Keyboard,
+} from "react-native";
+
 import { TouchableOpacity } from "react-native-gesture-handler";
 import Wordnik from "../components/Wordnik";
 import Form from "../components/Form";
 
-export default function English({ navigation, handleChange }) {
+export default function English() {
   const [tempKey, setTempKey] = useState(0);
   const [word, setWord] = useState([
     {
-      title: "Baranbaro",
+      title: "Kombuyuutar",
       key: "-1",
     },
     {
-      title: "Baranbaro yar",
+      title: "Dahab",
       key: "-2",
     },
   ]);
+
+  useEffect(() => {
+    // fetch data on component mount
+    getWords();
+  });
 
   const onPress = () => {
     //return component
@@ -28,30 +43,53 @@ export default function English({ navigation, handleChange }) {
     setWord((title) => {
       return [word, ...title];
     });
-  };
-  console.log(word);
 
+    axios({
+      url: "/api/save",
+      method: "POST",
+      data: word,
+    })
+      .then(() => {
+        console.log("Data has been sent to the server!");
+      })
+      .catch(() => {
+        console.log("Nooooo. Data has not been sent to the server!");
+      });
+  };
+  const getWords = () => {
+    axios
+      .get("/api")
+      .then((response) => {
+        const data = response.data;
+        setWord({ data: title });
+      })
+      .catch(() => {
+        console.log("Error retrieving data!!");
+      });
+  };
   return (
-    <View style={styles.container}>
-      <View style={{ flexDirection: "row" }}>
-        <Wordnik key={tempKey.toString()} />
-        <TouchableOpacity onPress={onPress}>
-          <Button color="brown" title="Next word" />
-        </TouchableOpacity>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <View style={styles.container}>
+        <View style={{ flexDirection: "row" }}>
+          <Wordnik key={tempKey.toString()} />
+          <TouchableOpacity onPress={onPress}>
+            <Button color="brown" title="Next word" />
+          </TouchableOpacity>
+        </View>
+        <Form addWords={addWords} />
+        <View style={styles.flatlistView}>
+          <FlatList
+            data={word}
+            renderItem={({ item }) => (
+              <TouchableOpacity>
+                <Text style={styles.words}>{item.title}</Text>
+              </TouchableOpacity>
+            )}
+            keyExtractor={(item, index) => index.toString()}
+          />
+        </View>
       </View>
-      <Form addWords={addWords} />
-      <View style={styles.flatlistView}>
-        <FlatList
-          data={word}
-          renderItem={({ item }) => (
-            <TouchableOpacity>
-              <Text style={styles.words}>{item.title}</Text>
-            </TouchableOpacity>
-          )}
-          keyExtractor={(item, index) => index.toString()}
-        />
-      </View>
-    </View>
+    </TouchableWithoutFeedback>
   );
 }
 
