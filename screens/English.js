@@ -13,6 +13,7 @@ import {
 import { TouchableOpacity } from "react-native-gesture-handler";
 import Wordnik from "../components/Wordnik";
 import Form from "../components/Form";
+import AnimatedFlatList from "../components/AnimatedFlatList";
 
 export default function English() {
   const [tempKey, setTempKey] = useState(0);
@@ -44,6 +45,7 @@ export default function English() {
       return [word, ...title];
     });
 
+    //Save data
     axios({
       url: "/api/save",
       method: "POST",
@@ -57,6 +59,7 @@ export default function English() {
       });
   };
   const getWords = () => {
+    //fetch data from db
     axios
       .get("/api")
       .then((response) => {
@@ -68,28 +71,31 @@ export default function English() {
       });
   };
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <View style={styles.container}>
-        <View style={{ flexDirection: "row" }}>
-          <Wordnik key={tempKey.toString()} />
-          <TouchableOpacity onPress={onPress}>
-            <Button color="brown" title="Next word" />
-          </TouchableOpacity>
+    <>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View style={styles.container}>
+          <View style={{ flexDirection: "row" }}>
+            <Wordnik key={tempKey.toString()} />
+            <TouchableOpacity onPress={onPress}>
+              <Button color="brown" title="Next word" />
+            </TouchableOpacity>
+          </View>
+          <Form addWords={addWords} />
+          <View style={styles.flatlistView}>
+            <FlatList
+              data={word}
+              renderItem={({ item }) => (
+                <TouchableOpacity>
+                  <Text style={styles.words}>{item.title}</Text>
+                </TouchableOpacity>
+              )}
+              keyExtractor={(item, index) => index.toString()}
+            />
+          </View>
         </View>
-        <Form addWords={addWords} />
-        <View style={styles.flatlistView}>
-          <FlatList
-            data={word}
-            renderItem={({ item }) => (
-              <TouchableOpacity>
-                <Text style={styles.words}>{item.title}</Text>
-              </TouchableOpacity>
-            )}
-            keyExtractor={(item, index) => index.toString()}
-          />
-        </View>
-      </View>
-    </TouchableWithoutFeedback>
+      </TouchableWithoutFeedback>
+      <AnimatedFlatList word={word} />
+    </>
   );
 }
 
