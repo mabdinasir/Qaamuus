@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import {
   StatusBar,
   Image,
@@ -7,48 +7,137 @@ import {
   View,
   Dimensions,
   StyleSheet,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  Keyboard,
+  Button,
 } from "react-native";
-const { width, height } = Dimensions.get("screen");
-import faker from "faker";
+import Wordnik from "../components/Wordnik";
+import Form from "../components/Form";
 
-faker.seed(10);
-const DATA = [...Array(30).keys()].map((_, i) => {
-  return {
-    key: faker.random.uuid(),
-    image: `https://randomuser.me/api/portraits/${faker.helpers.randomize([
-      "women",
-      "men",
-    ])}/${faker.random.number(60)}.jpg`,
-    name: faker.name.findName(),
-    jobTitle: faker.name.jobTitle(),
-    email: faker.internet.email(),
-  };
-});
+let randomnames = [
+  "Adam ",
+  "Alex ",
+  "Aaron ",
+  "Ben ",
+  "Carl ",
+  "Dan ",
+  "David ",
+  "Edward",
+  "Fred",
+  "Frank",
+  "George",
+  "Hal",
+  "Hank",
+  "Ike",
+  "John",
+  "Jack",
+  "Joe",
+  "Larry",
+  "Monte",
+  "Matthew",
+  "Mark",
+  "Nathan",
+  "Otto",
+  "Paul",
+  "Peter",
+  "Roger",
+  "Roger",
+  "Steve",
+  "Thomas",
+  "Tim",
+  "Ty",
+  "Victor",
+  "Walter",
+];
 
 const BG_IMG =
   "https://images.pexels.com/photos/1231265/pexels-photo-1231265.jpeg?auto";
+let randomImage = "https://picsum.photos/200";
 const SPACING = 20;
 const AVATAR_SIZE = 70;
 ITEM_SIZE = AVATAR_SIZE + SPACING * 3;
 
-export default ({ word }) => {
+export default () => {
+  const [tempKey, setTempKey] = useState(0);
+
+  const [word, setWord] = useState([]);
+
+  const onPress = () => {
+    //refresh component
+    setTempKey(tempKey + 1);
+  };
+
+  //Add words to the state on submit
+  const addWords = (word) => {
+    word,
+      setWord((title) => {
+        return [word, ...title];
+      });
+  };
   const scrollY = React.useRef(new Animated.Value(0)).current;
 
   return (
-    <View style={{ flex: 1, backgroundColor: "#fff" }}>
+    <View
+      style={{
+        flex: 1,
+        paddingTop: StatusBar.currentHeight || 36,
+      }}
+    >
       <Image
         source={{ uri: BG_IMG }}
         style={StyleSheet.absoluteFillObject}
         blurRadius={80}
       />
+
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-around",
+          padding: SPACING,
+          margin: SPACING,
+          backgroundColor: "rgba(255,255,255,0.8)",
+          borderRadius: 12,
+          shadowColor: "#000",
+          shadowOffset: {
+            width: 0,
+            height: 10,
+          },
+          shadowOpacity: 0.3,
+          shadowRadius: 20,
+        }}
+      >
+        <Wordnik key={tempKey.toString()} />
+        <Button color="brown" title="Next word" onPress={onPress} />
+      </View>
+
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "center",
+          padding: SPACING,
+          margin: SPACING,
+          backgroundColor: "rgba(255,255,255,0.8)",
+          borderRadius: 12,
+          shadowColor: "#000",
+          shadowOffset: {
+            width: 0,
+            height: 10,
+          },
+          shadowOpacity: 0.3,
+          shadowRadius: 20,
+        }}
+      >
+        <Form addWords={addWords} />
+      </View>
+
       <Animated.FlatList
-        data={DATA}
+        data={word}
         onScroll={Animated.event(
           [{ nativeEvent: { contentOffset: { y: scrollY } } }],
           { useNativeDriver: true }
         )}
-        keyExtractor={(item) => item.key}
-        // bounces="false"
+        keyExtractor={(item, index) => index.toString()} // bounces="false"
         // showsVerticalScrollIndicator={false}
         contentContainerStyle={{
           padding: SPACING,
@@ -96,7 +185,7 @@ export default ({ word }) => {
               }}
             >
               <Image
-                source={{ uri: item.image }}
+                source={{ uri: randomImage }}
                 style={{
                   width: AVATAR_SIZE,
                   height: AVATAR_SIZE,
@@ -106,14 +195,9 @@ export default ({ word }) => {
               />
               <View>
                 <Text style={{ fontSize: 22, fontWeight: "700" }}>
-                  {item.name}
+                  {randomnames[Math.floor(Math.random() * randomnames.length)]}
                 </Text>
-                <Text style={{ fontSize: 16, opacity: 0.7 }}>
-                  {item.jobTitle}
-                </Text>
-                <Text style={{ fontSize: 14, opacity: 0.8, color: "#0099cc" }}>
-                  {item.email}
-                </Text>
+                <Text style={{ fontSize: 16, opacity: 0.7 }}>{item.title}</Text>
               </View>
             </Animated.View>
           );
@@ -122,3 +206,11 @@ export default ({ word }) => {
     </View>
   );
 };
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#EEEEEE",
+    alignItems: "center",
+    padding: 40,
+  },
+});

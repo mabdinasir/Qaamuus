@@ -18,14 +18,15 @@ export default function Form({ addWords }) {
           addWords(values);
         }}
       >
-        {({ handleChange, handleSubmit, values }) => (
-          <View style={{ flexDirection: "row", top: 15 }}>
+        {({ handleChange, handleSubmit, values, errors }) => (
+          <View style={{ flexDirection: "row", }}>
             <TextInput
               multiline
               style={styles.input}
               onChangeText={handleChange("title")}
               value={values.title}
               placeholder="Turjun "
+
             />
             <Button
               style={styles.button}
