@@ -19,7 +19,9 @@ router.post("/save", (req, res) => {
   console.log("Body", req.body);
   const data = req.body;
 
-  const newtranslateWord = new translateWord(data);
+  const newtranslateWord = new translateWord();
+  newtranslateWord.word = data.title;
+  newtranslateWord.date = new Date().toString();
 
   //save to db
   newtranslateWord.save((error) => {

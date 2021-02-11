@@ -14,8 +14,8 @@ export default function Form({ addWords }) {
         initialValues={{ title: "" }}
         onSubmit={(values, actions) => {
           console.log(values);
-          actions.resetForm();
           addWords(values);
+          actions.resetForm();
         }}
       >
         {({ handleChange, handleSubmit, values, errors }) => (

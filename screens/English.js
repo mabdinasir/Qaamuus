@@ -40,16 +40,14 @@ export default function English() {
 
   //Add words to the state on submit
   const addWords = (word) => {
-    word, (key = Math.random().toString());
-    setWord((title) => {
-      return [word, ...title];
-    });
+    // word is contain value like this { title: "text_input_value_from_Form_component"}
+    setWord([...word, { title: word.title, key: Math.random().toString() }]);
 
     //Save data
     axios({
       url: "/api/save",
       method: "POST",
-      data: word,
+      data: { title: word.title },
     })
       .then(() => {
         console.log("Data has been sent to the server!");
@@ -64,7 +62,7 @@ export default function English() {
       .get("/api")
       .then((response) => {
         const data = response.data;
-        setWord({ data: title });
+        setWord(data); // set data because data will be array of object of "title" and "date"
       })
       .catch(() => {
         console.log("Error retrieving data!!");
