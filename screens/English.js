@@ -39,15 +39,15 @@ export default function English() {
   };
 
   //Add words to the state on submit
-  const addWords = (word) => {
+  const addWords = ({title}) => {
     // word is contain value like this { title: "text_input_value_from_Form_component"}
-    setWord([...word, { title: word.title, key: Math.random().toString() }]);
+    setWord([...word, { title: title, key: Math.random().toString() }]);
 
     //Save data
     axios({
       url: "/api/save",
       method: "POST",
-      data: { title: word.title },
+      data: { title: title },
     })
       .then(() => {
         console.log("Data has been sent to the server!");
