@@ -29,8 +29,8 @@ export default function English() {
   };
 
   //Add words to the state on submit
-  const addWords = ({title}) => {
-    // word is contain value like this { title: "text_input_value_from_Form_component"}
+  const addWords = (word) => {
+    // word contains value like this { title: "text_input_value_from_Form_component"}
     setWord([...word, { title: title, key: Math.random().toString() }]);
 
     //Save data
