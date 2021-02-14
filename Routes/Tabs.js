@@ -40,6 +40,8 @@ export default function Tabs() {
           style: {
             backgroundColor: "ghostwhite", //color you want to change
             position: "absolute",
+            height: 70,
+            // paddingBottom: 8,
             // borderTopColor: 'grey',
           },
         }}

@@ -21,7 +21,7 @@ export default function Somali() {
       >
         Halkan Gali ereyo soomali ah
       </Text>
-      <Form />
+      {/* <Form /> */}
     </View>
   );
 }

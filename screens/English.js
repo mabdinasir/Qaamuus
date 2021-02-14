@@ -8,7 +8,6 @@ import {
   FlatList,
   TouchableWithoutFeedback,
   Keyboard,
-  StatusBar
 } from "react-native";
 
 import { TouchableOpacity } from "react-native-gesture-handler";

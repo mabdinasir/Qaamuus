@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, TextInput, View, StyleSheet } from "react-native";
-
 import { Formik } from "formik";
+
 export default function Form({ addWords }) {
   return (
     <>
@@ -13,7 +13,7 @@ export default function Form({ addWords }) {
           actions.resetForm();
         }}
       >
-        {({ handleChange, handleSubmit, values, errors }) => (
+        {({ handleChange, handleSubmit, values }) => (
           <View style={{ flexDirection: "row" }}>
             <TextInput
               multiline
@@ -25,7 +25,7 @@ export default function Form({ addWords }) {
             <Button
               style={styles.button}
               onPress={handleSubmit}
-              title="Submit"
+              title="Dhig"
               color="brown"
             />
           </View>
