@@ -8,25 +8,16 @@ import {
   FlatList,
   TouchableWithoutFeedback,
   Keyboard,
+  StatusBar
 } from "react-native";
 
 import { TouchableOpacity } from "react-native-gesture-handler";
 import Wordnik from "../components/Wordnik";
 import Form from "../components/Form";
-import AnimatedFlatList from "../components/AnimatedFlatList";
 
 export default function English() {
   const [tempKey, setTempKey] = useState(0);
-  const [word, setWord] = useState([
-    {
-      title: "Kombuyuutar",
-      key: "-1",
-    },
-    {
-      title: "Dahab",
-      key: "-2",
-    },
-  ]);
+  const [word, setWord] = useState([]);
 
   useEffect(() => {
     // fetch data on component mount
@@ -72,13 +63,15 @@ export default function English() {
     <>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={styles.container}>
-          <View style={{ flexDirection: "row" }}>
+          <View style={{ flexDirection: "row", backgroundColor: "#F8F9F9" }}>
             <Wordnik key={tempKey.toString()} />
             <TouchableOpacity onPress={onPress}>
               <Button color="brown" title="Next word" />
             </TouchableOpacity>
           </View>
-          <Form addWords={addWords} />
+          <View style={{top: 30}}>
+            <Form addWords={addWords}  />
+          </View>
           <View style={styles.flatlistView}>
             <FlatList
               data={word}
@@ -92,7 +85,6 @@ export default function English() {
           </View>
         </View>
       </TouchableWithoutFeedback>
-      {/* <AnimatedFlatList word={word} /> */}
     </>
   );
 }
@@ -100,9 +92,9 @@ export default function English() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#EEEEEE",
+    backgroundColor: "#F4F6F6",
     alignItems: "center",
-    padding: 40,
+    paddingTop: 40,
   },
 
   words: {

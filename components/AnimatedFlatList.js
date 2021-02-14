@@ -54,7 +54,8 @@ let randomnames = [
 const BG_IMG =
   "https://images.pexels.com/photos/1231265/pexels-photo-1231265.jpeg?auto";
 let randomImage = "https://picsum.photos/200";
-const SPACING = 20;
+const window = Dimensions.get("window").width;
+const SPACING = 15;
 const AVATAR_SIZE = 70;
 ITEM_SIZE = AVATAR_SIZE + SPACING * 3;
 
@@ -81,14 +82,15 @@ export default () => {
     <View
       style={{
         flex: 1,
-        paddingTop: StatusBar.currentHeight || 36,
+        paddingTop: StatusBar.currentHeight || 15,
+        backgroundColor: "#F4F6F6",
       }}
     >
-      <Image
+      {/* <Image
         source={{ uri: BG_IMG }}
         style={StyleSheet.absoluteFillObject}
         blurRadius={80}
-      />
+      /> */}
 
       <View
         style={{
@@ -96,18 +98,15 @@ export default () => {
           justifyContent: "space-around",
           padding: SPACING,
           margin: SPACING,
-          backgroundColor: "rgba(255,255,255,0.8)",
-          borderRadius: 12,
-          shadowColor: "#000",
-          shadowOffset: {
-            width: 0,
-            height: 10,
-          },
-          shadowOpacity: 0.3,
-          shadowRadius: 20,
         }}
       >
-        <Wordnik key={tempKey.toString()} />
+        <View
+          style={{
+            backgroundColor: "#F8F9F9",
+          }}
+        >
+          <Wordnik key={tempKey.toString()} />
+        </View>
         <Button color="brown" title="Next word" onPress={onPress} />
       </View>
 
@@ -130,6 +129,17 @@ export default () => {
       >
         <Form addWords={addWords} />
       </View>
+
+      <Text
+        style={{
+          fontSize: 22,
+          fontWeight: "bold",
+          color: "grey",
+          left: window / 2.3,
+        }}
+      >
+        Posts
+      </Text>
 
       <Animated.FlatList
         data={word}
@@ -209,7 +219,7 @@ export default () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#EEEEEE",
+    backgroundColor: "red",
     alignItems: "center",
     padding: 40,
   },

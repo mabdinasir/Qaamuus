@@ -1,10 +1,5 @@
 import React, { useState } from "react";
-import {
-  Button,
-  TextInput,
-  View,
-  StyleSheet,
-} from "react-native";
+import { Button, TextInput, View, StyleSheet } from "react-native";
 
 import { Formik } from "formik";
 export default function Form({ addWords }) {
@@ -19,14 +14,13 @@ export default function Form({ addWords }) {
         }}
       >
         {({ handleChange, handleSubmit, values, errors }) => (
-          <View style={{ flexDirection: "row", }}>
+          <View style={{ flexDirection: "row" }}>
             <TextInput
               multiline
               style={styles.input}
               onChangeText={handleChange("title")}
               value={values.title}
               placeholder="Turjun "
-
             />
             <Button
               style={styles.button}
@@ -43,7 +37,8 @@ export default function Form({ addWords }) {
 const styles = StyleSheet.create({
   input: {
     borderWidth: 1,
-    borderColor: "grey",
+    borderColor: 0,
+    borderBottomColor: "brown",
     padding: 10,
     fontSize: 18,
     height: 40,
