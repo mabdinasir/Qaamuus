@@ -8,9 +8,9 @@ import {
   FlatList,
   TouchableWithoutFeedback,
   Keyboard,
+  TouchableOpacity,
 } from "react-native";
 
-import { TouchableOpacity } from "react-native-gesture-handler";
 import Wordnik from "../components/Wordnik";
 import Form from "../components/Form";
 
@@ -24,20 +24,22 @@ export default function English() {
   });
 
   const onPress = () => {
-    //return component
+    //refresh component
     setTempKey(tempKey + 1);
   };
 
   //Add words to the state on submit
   const addWords = (word) => {
-    // word contains value like this { title: "text_input_value_from_Form_component"}
-    setWord([...word, { title: title, key: Math.random().toString() }]);
+    word,
+      setWord((title) => {
+        return [word, ...title];
+      });
 
     //Save data
     axios({
-      url: "/api/save",
+      url: "/save",
       method: "POST",
-      data: { title: title },
+      data: word,
     })
       .then(() => {
         console.log("Data has been sent to the server!");
@@ -61,16 +63,48 @@ export default function English() {
   return (
     <>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View style={styles.container}>
-          <View style={{ flexDirection: "row", backgroundColor: "#F8F9F9" }}>
-            <Wordnik key={tempKey.toString()} />
-            <TouchableOpacity onPress={onPress}>
-              <Button color="brown" title="Next word" />
-            </TouchableOpacity>
+        <View
+          style={{
+            flex: 1,
+            paddingTop: 10,
+            backgroundColor: "#F4F6F6",
+          }}
+        >
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-around",
+              padding: 15,
+              margin: 15,
+            }}
+          >
+            <View
+              style={{
+                backgroundColor: "#F8F9F9",
+              }}
+            >
+              <Wordnik key={tempKey.toString()} />
+            </View>
+            <Button color="brown" title="Next word" onPress={onPress} />
           </View>
-          <View style={{top: 30}}>
-            <Form addWords={addWords}  />
+
+          <View style={{ justifyContent: "center", alignItems: "center" }}>
+            <Form addWords={addWords} />
           </View>
+
+          <View style={{ justifyContent: "center", alignItems: "center" }}>
+            <Text
+              style={{
+                fontSize: 22,
+                fontWeight: "bold",
+                color: "grey",
+                paddingTop: 15,
+              }}
+            >
+              Posts
+            </Text>
+          </View>
+
           <View style={styles.flatlistView}>
             <FlatList
               data={word}
@@ -89,18 +123,13 @@ export default function English() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#F4F6F6",
-    alignItems: "center",
-    paddingTop: 40,
-  },
-
   words: {
     color: "black",
     fontSize: 24,
   },
   flatlistView: {
-    top: 35,
+    top: 15,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });

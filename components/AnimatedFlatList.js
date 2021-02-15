@@ -82,64 +82,27 @@ export default () => {
     <View
       style={{
         flex: 1,
-        paddingTop: StatusBar.currentHeight || 15,
+        paddingTop: 10,
         backgroundColor: "#F4F6F6",
       }}
     >
-      {/* <Image
-        source={{ uri: BG_IMG }}
-        style={StyleSheet.absoluteFillObject}
-        blurRadius={80}
-      /> */}
-
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-around",
-          padding: SPACING,
-          margin: SPACING,
-        }}
-      >
-        <View
-          style={{
-            backgroundColor: "#F8F9F9",
-          }}
-        >
-          <Wordnik key={tempKey.toString()} />
-        </View>
-        <Button color="brown" title="Next word" onPress={onPress} />
-      </View>
-
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "center",
-          padding: SPACING,
-          margin: SPACING,
-          backgroundColor: "rgba(255,255,255,0.8)",
-          borderRadius: 12,
-          shadowColor: "#000",
-          shadowOffset: {
-            width: 0,
-            height: 10,
-          },
-          shadowOpacity: 0.3,
-          shadowRadius: 20,
-        }}
-      >
+      <View style={{ justifyContent: "center", alignItems: "center" }}>
         <Form addWords={addWords} />
       </View>
+      <View style={{ justifyContent: "center", alignItems: "center" }}>
+        {/* <Text
+          style={{
+            fontSize: 22,
+            fontWeight: "bold",
+            color: "grey",
+            padding: 15,
 
-      <Text
-        style={{
-          fontSize: 22,
-          fontWeight: "bold",
-          color: "grey",
-          left: window / 2.3,
-        }}
-      >
-        Posts
-      </Text>
+          }}
+        >
+          Posts
+          if you uncomment here, comment out top: 30 in the animated view
+        </Text> */}
+      </View>
 
       <Animated.FlatList
         data={word}
@@ -148,17 +111,16 @@ export default () => {
           { useNativeDriver: true }
         )}
         keyExtractor={(item, index) => index.toString()} // bounces="false"
-        // showsVerticalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
         contentContainerStyle={{
           padding: SPACING,
-          paddingTop: StatusBar.height || 42,
         }}
         renderItem={({ item, index }) => {
           const inputRange = [
             -1,
             0,
             ITEM_SIZE * index,
-            ITEM_SIZE * (index + 2),
+            ITEM_SIZE * (index + 1),
           ];
           const opacityInputRange = [
             -1,
@@ -181,14 +143,16 @@ export default () => {
                 flexDirection: "row",
                 padding: SPACING,
                 marginBottom: SPACING,
+                paddingTop: 15,
+                top: 30,
                 backgroundColor: "rgba(255,255,255,0.8)",
                 borderRadius: 12,
-                shadowColor: "#000",
+                shadowColor: "#8a795d",
                 shadowOffset: {
                   width: 0,
                   height: 10,
                 },
-                shadowOpacity: 0.3,
+                shadowOpacity: 0.9,
                 shadowRadius: 20,
                 opacity,
                 transform: [{ scale }],
@@ -207,7 +171,12 @@ export default () => {
                 <Text style={{ fontSize: 22, fontWeight: "700" }}>
                   {randomnames[Math.floor(Math.random() * randomnames.length)]}
                 </Text>
-                <Text style={{ fontSize: 16, opacity: 0.7 }}>{item.title}</Text>
+                <Text
+                  numberOfLines={1}
+                  style={{ fontSize: 16, opacity: 0.7, width: window / 1.5 }}
+                >
+                  {item.title}
+                </Text>
               </View>
             </Animated.View>
           );
@@ -216,11 +185,3 @@ export default () => {
     </View>
   );
 };
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "red",
-    alignItems: "center",
-    padding: 40,
-  },
-});

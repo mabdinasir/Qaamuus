@@ -29,11 +29,11 @@ export default function Tabs() {
             }
 
             // You can return any component that you like here!
-            return <FontAwesome5 name={iconName} size={size} color={color} />;
+            return <FontAwesome5 name={iconName} size={32} color={color} />;
           },
         })}
         tabBarOptions={{
-        
+          showLabel: false,
           keyboardHidesTabBar: true,
           activeTintColor: "brown",
           inactiveTintColor: "grey",

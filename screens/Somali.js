@@ -1,27 +1,35 @@
 import React from "react";
 import { View, Text } from "react-native";
-import Form from "../components/Form";
+import AnimatedFlatList from "../components/AnimatedFlatList";
 export default function Somali() {
   return (
-    <View
-      style={{
-        flex: 1,
-        backgroundColor: "#F4F6F6",
-        alignItems: "center",
-        paddingTop: 42,
-      }}
-    >
-      <Text
+    <View style={{ flex: 1, backgroundColor: '#F4F6F6'}}>
+      <View
         style={{
-          fontSize: 22,
-          fontWeight: "bold",
-          color: "grey",
-          paddingBottom: 20,
+          flexDirection: "row",
+          justifyContent: "space-around",
+          padding: 15,
+          margin: 15,
+          top: 10,
         }}
       >
-        Halkan Gali ereyo soomali ah
-      </Text>
-      {/* <Form /> */}
+        <View
+          style={{
+          }}
+        >
+          <Text
+            style={{
+              fontSize: 22,
+              fontWeight: "bold",
+              color: "grey",
+              backgroundColor: "#F8F9F9",
+            }}
+          >
+            Halkan dhig ereyo soomali ah
+          </Text>
+        </View>
+      </View>
+      <AnimatedFlatList />
     </View>
   );
 }

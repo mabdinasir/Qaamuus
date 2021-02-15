@@ -39,7 +39,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 0,
     borderBottomColor: "brown",
-    padding: 10,
     fontSize: 18,
     height: 40,
     width: 150,
