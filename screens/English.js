@@ -13,10 +13,12 @@ import {
 
 import Wordnik from "../components/Wordnik";
 import Form from "../components/Form";
+import TimeAgo from "../components/TimeAgo";
 
 export default function English() {
   const [tempKey, setTempKey] = useState(0);
   const [word, setWord] = useState([]);
+  let timestamp = new Date();
 
   useEffect(() => {
     // fetch data on component mount
@@ -110,6 +112,7 @@ export default function English() {
               data={word}
               renderItem={({ item }) => (
                 <TouchableOpacity>
+                  <TimeAgo timestamp={timestamp}/>
                   <Text style={styles.words}>{item.title}</Text>
                 </TouchableOpacity>
               )}
