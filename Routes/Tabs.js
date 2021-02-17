@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FontAwesome5 } from "@expo/vector-icons";
+import Icon from 'react-native-ico-flags';
 
 import HomeScreen from "../screens/English";
 import Arabic from "../screens/Arabic";
@@ -19,17 +20,17 @@ export default function Tabs() {
             let iconName;
 
             if (route.name === "English") {
-              iconName = focused ? "home" : "home";
+              iconName = focused ? "england" : "england";
             } else if (route.name === "Arabic") {
-              iconName = focused ? "heartbeat" : "heartbeat";
+              iconName = focused ? "saudi-arabia" : "saudi-arabia";
             } else if (route.name === "Somali") {
-              iconName = focused ? "pills" : "pills";
+              iconName = focused ? "somalia" : "somalia";
             } else if (route.name === "Profile") {
-              iconName = focused ? "skull" : "skull";
+              return <FontAwesome5 name="skull" size={24} color="white" />
             }
 
             // You can return any component that you like here!
-            return <FontAwesome5 name={iconName} size={32} color={color} />;
+            return <Icon name={iconName} height="40" width="40"/>;
           },
         })}
         tabBarOptions={{
@@ -38,10 +39,11 @@ export default function Tabs() {
           activeTintColor: "brown",
           inactiveTintColor: "grey",
           style: {
-            backgroundColor: "ghostwhite", //color you want to change
-            position: "absolute",
+            backgroundColor: "brown", //color you want to change
             height: 70,
-            // paddingBottom: 8,
+            borderTopRightRadius: 35,
+            borderTopLeftRadius: 35,
+            alignItems: "center"
             // borderTopColor: 'grey',
           },
         }}
