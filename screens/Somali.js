@@ -16,8 +16,6 @@ export default function Somali() {
         <View style={{}}>
           <Text
             style={{
-              fontFamily: "Montserrat",
-
               fontSize: 22,
               fontWeight: "bold",
               color: "grey",

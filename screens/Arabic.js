@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { View, Button, Text } from "react-native";
 import Arabia from "../components/Arabia";
-import Form from "../components/Form";
+import AnimatedFlatList from "../components/AnimatedFlatList";
 
-const title = 'الكلمة التالية'
+const title = "التالية";
 export default function Arabic({ navigation }) {
   const [tempKey, setTempKey] = useState(0);
 
@@ -37,9 +37,7 @@ export default function Arabic({ navigation }) {
         </View>
         <Button color="brown" title="Next word" onPress={onPress} />
       </View>
-      <View style={{ justifyContent: "center", alignItems: "center" }}>
-        <Form title={title} />
-      </View>
+      <AnimatedFlatList />
       <View style={{ justifyContent: "center", alignItems: "center" }}>
         <Text
           style={{

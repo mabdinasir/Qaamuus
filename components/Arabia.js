@@ -29,7 +29,6 @@ export default Arabia;
 
 const styles = StyleSheet.create({
   text: {
-    fontFamily: "Montserrat",
     fontSize: 20,
     margin: 5,
     top: 5,

@@ -158,24 +158,32 @@ export default () => {
                 transform: [{ scale }],
               }}
             >
-              <Image
-                source={{ uri: randomImage }}
-                style={{
-                  width: AVATAR_SIZE,
-                  height: AVATAR_SIZE,
-                  borderRadius: AVATAR_SIZE,
-                  marginRight: SPACING / 2,
-                }}
-              />
               <View>
                 <Text style={{ fontSize: 22, fontWeight: "700" }}>
                   {randomnames[Math.floor(Math.random() * randomnames.length)]}
                 </Text>
+                <Image
+                  source={{ uri: randomImage }}
+                  style={{
+                    width: AVATAR_SIZE,
+                    height: AVATAR_SIZE,
+                    borderRadius: AVATAR_SIZE,
+                    marginRight: SPACING / 2,
+                  }}
+                />
+              </View>
+
+              <View
+                style={{
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
                 <Text
                   numberOfLines={1}
-                  style={{ fontSize: 16, opacity: 0.7, width: window / 1.5 }}
+                  style={{ fontSize: 16, opacity: 0.7, width: window / 1.5, left: 80, }}
                 >
-                  {item.title}
+                  TransWord: {item.title}
                 </Text>
               </View>
             </Animated.View>
