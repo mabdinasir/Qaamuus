@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, TextInput, View, StyleSheet } from "react-native";
 import { Formik } from "formik";
 
-export default function Form({ addWords }) {
+export default function Form({ addWords, title }) {
   return (
     <>
       <Formik
@@ -39,10 +39,14 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 0,
     borderBottomColor: "brown",
+    fontFamily: "Montserrat",
     fontSize: 18,
     height: 40,
     width: 150,
     marginRight: 10,
     textTransform: "capitalize",
+  },
+  button: {
+    fontFamily: "Montserrat",
   },
 });

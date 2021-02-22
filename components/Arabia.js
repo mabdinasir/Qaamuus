@@ -3,26 +3,37 @@ import { StyleSheet, Text, View, FlatList } from "react-native";
 
 import words from "../arabicWords.json";
 
+let word = words.arabicWords;
+
+console.log(
+  word[Object.keys(word)[Math.floor(Math.random() * Object.keys(word).length)]]
+);
+
 const Arabia = () => {
   return (
     <View style={{ flex: 1, alignItems: "center" }}>
-      <FlatList
-        showsVerticalScrollIndicator={false}
-        data={words.arabicWords}
-        renderItem={({ item }) => (
-          <View>
-            <Text style={{ color: "red", fontSize: 36, fontWeight: "bold" }}>
-              {item}
-            </Text>
-          </View>
-        )}
-        keyExtractor={(item, index) => index.toString()}
-      />
+      <Text style={styles.text}>
+        {
+          word[
+            Object.keys(word)[
+              Math.floor(Math.random() * Object.keys(word).length)
+            ]
+          ]
+        }
+      </Text>
     </View>
   );
 };
-console.log({ words });
 
 export default Arabia;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  text: {
+    fontFamily: "Montserrat",
+    fontSize: 20,
+    margin: 5,
+    top: 5,
+    textTransform: "capitalize",
+    color: "brown",
+  },
+});

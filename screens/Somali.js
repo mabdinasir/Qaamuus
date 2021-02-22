@@ -3,7 +3,7 @@ import { View, Text } from "react-native";
 import AnimatedFlatList from "../components/AnimatedFlatList";
 export default function Somali() {
   return (
-    <View style={{ flex: 1, backgroundColor: '#F4F6F6'}}>
+    <View style={{ flex: 1, backgroundColor: "#F4F6F6" }}>
       <View
         style={{
           flexDirection: "row",
@@ -13,12 +13,11 @@ export default function Somali() {
           top: 10,
         }}
       >
-        <View
-          style={{
-          }}
-        >
+        <View style={{}}>
           <Text
             style={{
+              fontFamily: "Montserrat",
+
               fontSize: 22,
               fontWeight: "bold",
               color: "grey",
