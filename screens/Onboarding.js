@@ -1,5 +1,6 @@
 import React, { useState, useRef, useCallback } from "react";
 import { StyleSheet, Text, View, FlatList, Animated } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import slides from "../components/slides";
 import OnboardingItem from "../components/OnboardingItem";
@@ -15,13 +16,18 @@ export default function Onboarding() {
     setCurrentinddex(viewableItems[0].index);
   }).current;
 
-  const viewConfig = useCallback({ viewAreaCoveragePercentageThreshold: 50 }).current;
+  const viewConfig = useCallback({ viewAreaCoveragePercentageThreshold: 50 })
+    .current;
 
-  const scrollTo = () => {
+  const scrollTo = async () => {
     if (currentIndex < slides.length - 1) {
       slidesRef.current.scrollToIndex({ index: currentIndex + 1 });
     } else {
-      console.log("last item");
+      try {
+        await AsyncStorage.setItem("@viewedOnboarding", "true");
+      } catch (err) {
+        console.log("Error", err);
+      }
     }
   };
 

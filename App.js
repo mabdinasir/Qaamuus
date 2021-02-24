@@ -4,38 +4,37 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import Tabs from "./Routes/Tabs";
 import Onboarding from "./screens/Onboarding";
+import English from "./screens/English";
 
 const Loading = () => {
   return (
     <View>
-      <ActivityIndicator size="large" color= 'brown'/>
+      <ActivityIndicator size="large" color="brown" />
     </View>
   );
 };
 
-const checkOnboarding = async () => {
-  try {
-    
-  } catch {
-    
-  } finally {
-
-  }
-}
-
 export default function App() {
   const [loading, setLoading] = useState(true);
   const [viewedOnBoarding, setviewedOnBoarding] = useState(false);
-  return (
-    <View style={styles.container}>
-      {loading ? <Loading /> : viewedOnBoarding ? <Tabs /> : <Onboarding />}
-    </View>
-  );
+
+  const checkOnboarding = async () => {
+    try {
+      const value = await AsyncStorage.getItem("@viewedOnboarding");
+      if (value !== null) {
+        setviewedOnBoarding(true);
+      }
+    } catch {
+      console.log("Error", err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    checkOnboarding();
+  }, []);
+
+  return loading ? <Loading /> : viewedOnBoarding ? <Tabs /> : <Onboarding />;
 }
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-});
+const styles = StyleSheet.create({});
