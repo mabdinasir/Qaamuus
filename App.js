@@ -4,7 +4,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import Tabs from "./Routes/Tabs";
 import Onboarding from "./screens/Onboarding";
-import English from "./screens/English";
 
 const Loading = () => {
   return (

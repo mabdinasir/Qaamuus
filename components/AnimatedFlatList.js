@@ -154,8 +154,8 @@ export default () => {
                 },
                 shadowOpacity: 0.9,
                 shadowRadius: 20,
-                opacity,
-                transform: [{ scale }],
+                // opacity,
+                // transform: [{ scale }],
               }}
             >
               <View>
@@ -181,7 +181,12 @@ export default () => {
               >
                 <Text
                   numberOfLines={1}
-                  style={{ fontSize: 16, opacity: 0.7, width: window / 1.5, left: 80, }}
+                  style={{
+                    fontSize: 16,
+                    opacity: 0.7,
+                    width: window / 1.5,
+                    left: 80,
+                  }}
                 >
                   TransWord: {item.title}
                 </Text>

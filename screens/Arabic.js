@@ -38,18 +38,7 @@ export default function Arabic({ navigation }) {
         <Button color="brown" title="Next word" onPress={onPress} />
       </View>
       <AnimatedFlatList />
-      <View style={{ justifyContent: "center", alignItems: "center" }}>
-        <Text
-          style={{
-            fontSize: 22,
-            fontWeight: "bold",
-            color: "grey",
-            paddingTop: 15,
-          }}
-        >
-          Posts
-        </Text>
-      </View>
+      <View style={{ justifyContent: "center", alignItems: "center" }}></View>
     </View>
   );
 }
