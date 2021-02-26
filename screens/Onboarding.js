@@ -1,13 +1,12 @@
 import React, { useState, useRef, useCallback } from "react";
-import { StyleSheet, Text, View, FlatList, Animated } from "react-native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { StyleSheet, View, FlatList, Animated } from "react-native";
 
 import slides from "../components/slides";
 import OnboardingItem from "../components/OnboardingItem";
 import Paginator from "../components/Paginator";
 import NextButton from "../components/NextButton";
 
-export default function Onboarding() {
+export default function Onboarding({ navigation }) {
   const [currentIndex, setCurrentinddex] = useState(0);
   const scrollX = useRef(new Animated.Value(0)).current;
   const slidesRef = useRef(null);
@@ -24,7 +23,7 @@ export default function Onboarding() {
       slidesRef.current.scrollToIndex({ index: currentIndex + 1 });
     } else {
       try {
-        await AsyncStorage.setItem("@viewedOnboarding", "true");
+        await navigation.navigate("Somali");
       } catch (err) {
         console.log("Error", err);
       }

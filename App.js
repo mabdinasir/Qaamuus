@@ -3,11 +3,12 @@ import { ActivityIndicator, View, StyleSheet } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import Tabs from "./Routes/Tabs";
+import HomeStack from "./Routes/HomeStack";
 import Onboarding from "./screens/Onboarding";
 
 const Loading = () => {
   return (
-    <View>
+    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
       <ActivityIndicator size="large" color="brown" />
     </View>
   );
@@ -35,5 +36,6 @@ export default function App() {
   }, []);
 
   return loading ? <Loading /> : viewedOnBoarding ? <Tabs /> : <Onboarding />;
+  // return <HomeStack />
 }
 const styles = StyleSheet.create({});
